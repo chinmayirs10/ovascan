@@ -38,6 +38,8 @@ Before reporting any accuracy, I audited the data ([`scripts/audit_dataset.py`](
    the classes apart by *which organ is visible* without ever learning what a polycystic ovary looks like.
 
 ![Detected augmentation families](reports/families.png)
+
+
 *Each row is one detected family: one original scan plus its augmented copies.*
 
 ### Results on the leakage-free split
