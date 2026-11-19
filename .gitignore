@@ -1,0 +1,15 @@
+# Personal documents - never publish
+*.docx
+*.pdf
+
+# Data (download separately, see README)
+dataset/
+
+# Environments / caches
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.streamlit/secrets.toml
