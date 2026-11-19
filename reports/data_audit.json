@@ -1,0 +1,51 @@
+{
+  "original_folder_counts": {
+    "test/normal": 1145,
+    "test/pcos_like": 787,
+    "train/normal": 1143,
+    "train/pcos_like": 781
+  },
+  "exact_duplicates": {
+    "files_total": 3856,
+    "unique_contents": 1922,
+    "duplicated_across_splits": 1920,
+    "label_conflicts_dropped": 1,
+    "kept": 1921
+  },
+  "family_threshold_cosine": 0.15,
+  "families_per_class": {
+    "pcos_like": 13,
+    "normal": 9
+  },
+  "largest_family_sizes": [
+    369,
+    276,
+    260,
+    170,
+    125,
+    117,
+    98,
+    87,
+    83,
+    60
+  ],
+  "group_split_images": {
+    "train": {
+      "pcos_like": 415,
+      "normal": 736
+    },
+    "val": {
+      "pcos_like": 172,
+      "normal": 20
+    },
+    "test": {
+      "pcos_like": 192,
+      "normal": 386
+    }
+  },
+  "group_split_families": {
+    "train": 14,
+    "val": 3,
+    "test": 5
+  }
+}
