@@ -40,7 +40,8 @@ Before reporting any accuracy, I audited the data ([`scripts/audit_dataset.py`](
 ![Detected augmentation families](reports/families.png)
 
 
-*Each row is one detected family: one original scan plus its augmented copies.*
+*Each row is one detected family: one original scan plus its augmented copies.
+Thumbnails from the Kaggle dataset by Anagha Choudhari, shown for analysis only (see [Dataset & credits](#dataset--credits)).*
 
 ### Results on the leakage-free split
 
@@ -63,17 +64,25 @@ which is why the app uses three bands instead of a yes/no threshold.
 
 ## Run it
 
+The demo and tests run without the dataset (the trained weights are in `models/`).
+
 ```bash
+git clone https://github.com/chinmayirs10/ovascan.git
+cd ovascan
 python -m venv .venv
-.venv\Scripts\activate          # Windows  (macOS/Linux: source .venv/bin/activate)
+.venv\Scripts\Activate.ps1      # Windows PowerShell  (macOS/Linux: source .venv/bin/activate)
 pip install -r requirements.txt
 
-# Optional: re-run audit + training (download the Kaggle dataset into dataset/data/ first)
+pytest -q                       # tests for result bands, leakage-free split and lifestyle rules
+streamlit run app.py            # opens http://localhost:8501, upload an ovarian ultrasound image
+```
+
+To re-run the audit and training, download the dataset from Kaggle yourself (see below), unzip it so
+the folders are `dataset/data/train/...` and `dataset/data/test/...`, then:
+
+```bash
 python scripts/audit_dataset.py --data dataset/data
 python scripts/train.py --epochs 8
-
-streamlit run app.py            # the trained weights are included in models/
-pytest -q                       # tests for result bands, leakage-free split and lifestyle rules
 ```
 
 ## Project layout
@@ -109,6 +118,24 @@ tests/                     pytest suite
 
 For education and research only. Not validated, not CE-marked, not a substitute for professional
 medical advice. If you have concerns about PCOS, please see a gynaecologist or GP.
+
+## Dataset & credits
+
+- **Dataset:** [PCOS detection using ultrasound images](https://www.kaggle.com/datasets/anaghachoudhari/pcos-detection-using-ultrasound-images)
+  by **Anagha Choudhari** on Kaggle (version 1, April 2022). Thank you for making it public.
+- **License:** listed as **"Unknown"** on Kaggle, and the original source of the images is not stated.
+  For that reason **this repository does not redistribute the dataset.** Download it from Kaggle and
+  follow Kaggle's terms. The only dataset content included here is a small grid of thumbnails in
+  `reports/families.png`, shown to document the data-quality findings.
+- `splits/split.csv` lists file names and labels only, no images.
+- If you are the owner of the dataset or the images and want something changed or removed, please
+  open an issue and I will act on it promptly.
+
+## License
+
+The **source code** is released under the [MIT License](LICENSE).
+The MIT License does **not** cover the dataset (see above). The **model weights** in `models/` were trained on
+that dataset, so they are shared for research and demonstration only, not for clinical or commercial use.
 
 ## Reference
 
